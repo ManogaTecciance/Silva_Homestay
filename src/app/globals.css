@@ -390,6 +390,21 @@
   box-shadow: 0 0 0 3px rgba(166, 124, 50, .13);
 }
 
+.sv-form-control[aria-invalid="true"] {
+  border-color: #a51d14;
+}
+
+.sv-form-control[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 3px rgba(165, 29, 20, .12);
+}
+
+.sv-form-error {
+  margin: 6px 0 0;
+  color: #8f170f;
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
 @media (min-width: 700px) {
   .sv-gallery-grid {
     grid-auto-rows: 180px;

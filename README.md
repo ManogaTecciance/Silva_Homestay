@@ -4,8 +4,8 @@ Website for **Silva Homestay & Bike Rental**, Anuradhapura — a one-page site b
 "Silva Homestay & Bike Rental" Claude Design prototype.
 
 **Stack:** Next.js 16 (App Router; the page is prerendered as static HTML), React 19, Tailwind CSS v4, lucide-react icons,
-`next/font` (Geist + Instrument Serif). No backend: the booking form opens the guest's email app with a
-pre-filled request.
+`next/font` (Geist + Instrument Serif). No backend: the booking form opens WhatsApp with a pre-filled
+availability enquiry.
 
 ```bash
 npm install
@@ -23,11 +23,11 @@ src/
   app/layout.tsx       ← fonts, <title>/description metadata
   app/page.tsx         ← section order
   components/          ← one file per section; client components only where interactive
-    booking-context.tsx   shared "selected package" state → package buttons pre-fill the form
+    booking-context.tsx   shared booking state → package/hero selections pre-fill the form
     places.tsx            cover-flow destination carousel (arrows, dots, drag/swipe, ←/→ keys)
     destination-modal.tsx destination detail dialog (focus trap, Escape, scroll lock)
     gallery.tsx           grid + lightbox
-    enquiry-form.tsx      booking form → mailto:
+    enquiry-form.tsx      validated booking form → WhatsApp Click-to-Chat
   lib/                 ← scroll helper, viewport / reduced-motion hooks, distance formatting
 public/images/         ← client photos (photos/), destination photos (destinations/), logo
 ```
@@ -58,11 +58,10 @@ Carried over from the design chats — tracked as `TODO(client)` comments in `co
    `silvahomestayandbikerental@gmail.com`. Which is live? (Site uses the first.)
 2. **Map pin / full address** — needed before showing any distances or a map.
 3. Is **Rs. 4,500** per night? Room count, room types, guest capacity per room.
-4. **WhatsApp** — is 076 138 6213 on WhatsApp? (Not labelled as such until confirmed.)
-5. Check-in / check-out times; booking and cancellation policy.
-6. **Fact-check** the five destination histories (UNESCO / Central Cultural Fund) — especially the
+4. Check-in / check-out times; booking and cancellation policy.
+5. **Fact-check** the five destination histories (UNESCO / Central Cultural Fund) — especially the
    Jetavanaramaya ~120 m height, Ruwanwelisaya restoration dates and Faxian's early-5th-century visit.
-7. Better photos: a larger **Abhayagiri** image (current one is 678px wide), and original camera files
+6. Better photos: a larger **Abhayagiri** image (current one is 678px wide), and original camera files
    for the bikes photo.
-8. The Package 02 image (`sacred-city-stupa.avif`) is a stock photo the designer added, not the client's —
+7. The Package 02 image (`sacred-city-stupa.avif`) is a stock photo the designer added, not the client's —
    confirm the licence or replace it with a client photo.

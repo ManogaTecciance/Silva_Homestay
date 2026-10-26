@@ -17,9 +17,13 @@ export const brand = {
 } as const;
 
 // TODO(client): the flyers show silvahomestayandbikerental@gmail.com — confirm which address is live.
+export const WHATSAPP_BUSINESS_NUMBER = "94761386213";
+
 export const contact = {
   phoneDisplay: "076 138 6213",
   phoneHref: "tel:+94761386213",
+  whatsappNumber: WHATSAPP_BUSINESS_NUMBER,
+  whatsappHref: `https://wa.me/${WHATSAPP_BUSINESS_NUMBER}`,
   email: "silvahomestayandrental@gmail.com",
   emailHref: "mailto:silvahomestayandrental@gmail.com",
   facebook: "https://www.facebook.com/profile.php?id=61591577745265",
@@ -315,10 +319,8 @@ export const enquiry = {
     { value: "2", label: "2 guests" },
     { value: "3+", label: "3 or more" },
   ],
-  submit: "Book Your Stay",
-  idleSummary: "We'll reply to confirm availability.",
-  sentMessage: (firstName: string) =>
-    `Thank you, ${firstName}. Your email app should open with your booking request ready to send. If it doesn't, call us on ${contact.phoneDisplay} or email ${contact.email}.`,
+  submit: "Check Your Stay",
+  idleSummary: "WhatsApp opens with your enquiry ready to send.",
 } as const;
 
 export const footer = {

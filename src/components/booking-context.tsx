@@ -7,6 +7,12 @@ import { scrollToId } from "@/lib/scroll";
 type Booking = {
   pkg: string;
   setPkg: (pkg: string) => void;
+  arrival: string;
+  setArrival: (arrival: string) => void;
+  departure: string;
+  setDeparture: (departure: string) => void;
+  guests: string;
+  setGuests: (guests: string) => void;
   /** Pre-select a room/package in the enquiry form and scroll to it. */
   choosePackage: (pkg: string) => void;
 };
@@ -15,11 +21,27 @@ const BookingContext = createContext<Booking | null>(null);
 
 export function BookingProvider({ children }: { children: React.ReactNode }) {
   const [pkg, setPkg] = useState<string>(PKG_ROOM);
+  const [arrival, setArrival] = useState("");
+  const [departure, setDeparture] = useState("");
+  const [guests, setGuests] = useState("2");
   const choosePackage = useCallback((next: string) => {
     setPkg(next);
     scrollToId("enquire");
   }, []);
-  const value = useMemo(() => ({ pkg, setPkg, choosePackage }), [pkg, choosePackage]);
+  const value = useMemo(
+    () => ({
+      pkg,
+      setPkg,
+      arrival,
+      setArrival,
+      departure,
+      setDeparture,
+      guests,
+      setGuests,
+      choosePackage,
+    }),
+    [pkg, arrival, departure, guests, choosePackage],
+  );
   return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;
 }
 
