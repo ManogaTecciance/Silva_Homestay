@@ -64,30 +64,34 @@ export function EnquiryForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex min-w-0 flex-col gap-4 rounded-[var(--radius-xl)] border border-border bg-card p-[clamp(20px,2.5vw,28px)] shadow-[var(--shadow-sm)]"
+      className="flex min-w-0 flex-col gap-4 rounded-[20px] border border-white/70 bg-white/96 p-[clamp(22px,3vw,34px)] shadow-[0_28px_70px_-32px_rgba(0,0,0,.48)] backdrop-blur-sm"
     >
+      <div className="mb-1">
+        <span className="text-[11px] font-semibold uppercase tracking-[.14em] text-[#8b682c]">Availability enquiry</span>
+        <h3 className="mt-1.5 mb-0 font-serif text-[30px] leading-none tracking-[-.02em] text-[#211d18]">Check your stay</h3>
+      </div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,160px),1fr))] gap-[14px]">
         <div>
-          <label className="label" htmlFor="sv-name">{f.name.label}</label>
-          <input className="input" id="sv-name" type="text" value={name} onChange={bind(setName)} placeholder={f.name.placeholder} required autoComplete="name" />
+          <label className="sv-form-label" htmlFor="sv-name">{f.name.label}</label>
+          <input className="sv-form-control" id="sv-name" type="text" value={name} onChange={bind(setName)} placeholder={f.name.placeholder} required autoComplete="name" />
         </div>
         <div>
-          <label className="label" htmlFor="sv-contact">{f.contact.label}</label>
-          <input className="input" id="sv-contact" type="text" value={contactInfo} onChange={bind(setContactInfo)} placeholder={f.contact.placeholder} required />
+          <label className="sv-form-label" htmlFor="sv-contact">{f.contact.label}</label>
+          <input className="sv-form-control" id="sv-contact" type="text" value={contactInfo} onChange={bind(setContactInfo)} placeholder={f.contact.placeholder} required />
         </div>
       </div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,140px),1fr))] gap-[14px]">
         <div>
-          <label className="label" htmlFor="sv-arrival">{f.arrival.label}</label>
-          <input className="input" id="sv-arrival" type="date" value={arrival} onChange={bind(setArrival)} />
+          <label className="sv-form-label" htmlFor="sv-arrival">{f.arrival.label}</label>
+          <input className="sv-form-control" id="sv-arrival" type="date" value={arrival} onChange={bind(setArrival)} />
         </div>
         <div>
-          <label className="label" htmlFor="sv-departure">{f.departure.label}</label>
-          <input className="input" id="sv-departure" type="date" value={departure} min={arrival || undefined} onChange={bind(setDeparture)} />
+          <label className="sv-form-label" htmlFor="sv-departure">{f.departure.label}</label>
+          <input className="sv-form-control" id="sv-departure" type="date" value={departure} min={arrival || undefined} onChange={bind(setDeparture)} />
         </div>
         <div>
-          <label className="label" htmlFor="sv-guests">{f.guests.label}</label>
-          <select className="input" id="sv-guests" value={guests} onChange={bind(setGuests)}>
+          <label className="sv-form-label" htmlFor="sv-guests">{f.guests.label}</label>
+          <select className="sv-form-control" id="sv-guests" value={guests} onChange={bind(setGuests)}>
             {enquiry.guestOptions.map((o) => (
               <option key={o.value} value={o.value}>{o.label}</option>
             ))}
@@ -95,19 +99,19 @@ export function EnquiryForm() {
         </div>
       </div>
       <div>
-        <label className="label" htmlFor="sv-pkg">{f.pkg.label}</label>
-        <select className="input" id="sv-pkg" value={pkg} onChange={bind(setPkg)}>
+        <label className="sv-form-label" htmlFor="sv-pkg">{f.pkg.label}</label>
+        <select className="sv-form-control" id="sv-pkg" value={pkg} onChange={bind(setPkg)}>
           {packageOptions.map((o) => (
             <option key={o} value={o}>{o}</option>
           ))}
         </select>
       </div>
       <div>
-        <label className="label" htmlFor="sv-msg">{f.message.label}</label>
-        <textarea className="input" id="sv-msg" value={message} onChange={bind(setMessage)} placeholder={f.message.placeholder} />
+        <label className="sv-form-label" htmlFor="sv-msg">{f.message.label}</label>
+        <textarea className="sv-form-control min-h-[82px] resize-y py-3" id="sv-msg" value={message} onChange={bind(setMessage)} placeholder={f.message.placeholder} />
       </div>
-      <div className="flex flex-wrap items-center gap-3">
-        <button className="btn btn-default btn-lg" type="submit">{enquiry.submit}</button>
+      <div className="flex flex-col items-start gap-3 min-[520px]:flex-row min-[520px]:items-center">
+        <button className="sv-btn sv-btn--dark min-w-[190px]" type="submit">{enquiry.submit}</button>
         <span className="text-[12.5px] leading-normal text-muted-foreground">{summary}</span>
       </div>
       {sent && (

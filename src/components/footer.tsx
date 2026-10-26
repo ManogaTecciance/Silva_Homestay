@@ -1,41 +1,43 @@
+import { Facebook, Mail, MapPin, Phone } from "lucide-react";
 import { brand, contact, footer, footerNav } from "@/content/content";
 import { Logo } from "./logo";
 
-const heading = "mb-[2px] text-[11px] font-semibold uppercase tracking-[.12em] text-muted-foreground";
-const item = "text-[13.5px]";
+const heading = "mb-2 text-[10px] font-semibold uppercase tracking-[.15em] text-[#8c8173]";
+const link = "text-[13px] leading-[1.5] text-[#514c45] transition-colors hover:text-[#8a6527]";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="container-x grid grid-cols-[repeat(auto-fit,minmax(min(100%,220px),1fr))] gap-[clamp(24px,3vw,48px)] py-[clamp(32px,4vw,52px)]">
+    <footer className="border-t border-[#e7e0d6] bg-[#faf8f3]">
+      <div className="mx-auto grid max-w-[1320px] gap-9 px-[var(--gutter)] py-[clamp(44px,5vw,68px)] min-[620px]:grid-cols-2 min-[1040px]:grid-cols-[1.35fr_.7fr_1fr_.65fr]">
         <div>
-          <Logo size={40} footer />
-          <p className="mt-4 mb-0 max-w-[30ch] text-[13px] leading-[1.6] text-muted-foreground">{brand.footerBlurb}</p>
+          <Logo size={44} footer />
+          <p className="mt-5 mb-0 max-w-[34ch] text-[12.5px] leading-[1.65] text-[#746e65]">{brand.footerBlurb}</p>
         </div>
-        <div className="flex flex-col gap-[9px]">
+
+        <div className="flex flex-col gap-2.5">
+          <span className={heading}>{footer.quickLinksHeading}</span>
+          {footerNav.map((item) => <a key={item.href} href={item.href} className={link}>{item.label}</a>)}
+        </div>
+
+        <div className="flex flex-col gap-3">
           <span className={heading}>{footer.contactHeading}</span>
-          <a href={contact.phoneHref} className={`${item} tabular-nums`}>{contact.phoneDisplay}</a>
-          <a href={contact.emailHref} className={`${item} [overflow-wrap:anywhere]`}>{contact.email}</a>
-          <span className={`${item} text-muted-foreground`}>{brand.location}</span>
-          <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className={item}>Facebook</a>
+          <a href={contact.phoneHref} className={`flex items-center gap-2.5 ${link}`}><Phone size={14} strokeWidth={1.7} className="flex-none text-[#8e692b]" aria-hidden /><span className="tabular-nums">{contact.phoneDisplay}</span></a>
+          <a href={contact.emailHref} className={`flex min-w-0 items-center gap-2.5 ${link}`}><Mail size={14} strokeWidth={1.7} className="flex-none text-[#8e692b]" aria-hidden /><span className="[overflow-wrap:anywhere]">{contact.email}</span></a>
+          <span className="flex items-center gap-2.5 text-[13px] text-[#746e65]"><MapPin size={14} strokeWidth={1.7} className="flex-none text-[#8e692b]" aria-hidden />{brand.location}</span>
         </div>
-        <div className="flex flex-col gap-[9px]">
-          <span className={heading}>{footer.ratesHeading}</span>
-          {footer.rates.map((r) => (
-            <span key={r} className={`${item} tabular-nums`}>{r}</span>
-          ))}
-        </div>
-        <div className="flex flex-col gap-[9px]">
-          <span className={heading}>{footer.exploreHeading}</span>
-          {footerNav.map((n) => (
-            <a key={n.href} href={n.href} className={`${item} !text-muted-foreground hover:!text-gold-ink`}>{n.label}</a>
-          ))}
+
+        <div className="flex flex-col gap-3">
+          <span className={heading}>{footer.socialHeading}</span>
+          <a href={contact.facebook} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full border border-[#dcd3c6] bg-white text-[#322d26] transition hover:-translate-y-0.5 hover:border-[#b8914e] hover:text-[#8a6527]" aria-label="Silva Homestay on Facebook">
+            <Facebook size={17} strokeWidth={1.8} aria-hidden />
+          </a>
         </div>
       </div>
-      <div className="border-t border-border">
-        <div className="container-x flex flex-wrap justify-between gap-[10px] py-4">
-          <span className="text-xs text-muted-foreground">{footer.copyright}</span>
-          <span className="text-xs text-muted-foreground">{brand.location}</span>
+
+      <div className="border-t border-[#e7e0d6]">
+        <div className="mx-auto flex max-w-[1320px] flex-col gap-2 px-[var(--gutter)] py-5 text-[11.5px] text-[#837b70] min-[560px]:flex-row min-[560px]:items-center min-[560px]:justify-between">
+          <span>{footer.copyright}</span>
+          <span>{brand.location}</span>
         </div>
       </div>
     </footer>

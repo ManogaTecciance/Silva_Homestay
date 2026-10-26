@@ -1,84 +1,63 @@
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { packages, packagesSection } from "@/content/content";
 import { ChoosePackageButton } from "./booking-context";
 
 export function Packages() {
   return (
-    <section id="packages" className="container-x pt-[var(--section-gap)]">
-      <div className="mb-[clamp(24px,3vw,40px)] flex flex-wrap items-end justify-between gap-5">
-        <div className="max-w-[640px]">
-          <span className="eyebrow">{packagesSection.eyebrow}</span>
-          <h2 className="h2">{packagesSection.title}</h2>
-          <p className="mt-[14px] mb-0 text-[15px] leading-[1.65] text-pretty text-muted-foreground">{packagesSection.copy}</p>
+    <section id="packages" className="bg-[#f5f1e9] py-[clamp(70px,8vw,112px)]">
+      <div className="mx-auto max-w-[1320px] px-[var(--gutter)]">
+        <div className="mb-[clamp(30px,4vw,50px)] flex flex-col justify-between gap-5 min-[760px]:flex-row min-[760px]:items-end">
+          <div className="max-w-[650px]">
+            <span className="sv-kicker"><span aria-hidden />{packagesSection.eyebrow}</span>
+            <h2 className="sv-section-title mt-4">Stay, ride, <em>or both.</em></h2>
+            <p className="mt-4 mb-0 max-w-[60ch] text-[15px] leading-[1.7] text-[#6d6860]">{packagesSection.copy}</p>
+          </div>
+          <a className="sv-btn sv-btn--outline flex-none" href="#enquire">
+            {packagesSection.cta}
+            <ArrowRight size={16} strokeWidth={1.8} aria-hidden />
+          </a>
         </div>
-        <a className="btn btn-outline" href="#enquire" style={{ gap: 8 }}>
-          {packagesSection.cta}
-          <ArrowRight size={15} strokeWidth={2} aria-hidden />
-        </a>
-      </div>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-[clamp(16px,2vw,24px)]">
-        {packages.map((p) => (
-          <article
-            key={p.badge}
-            className={`relative flex flex-col overflow-hidden rounded-[var(--radius-xl)] border bg-card transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5 ${
-              p.featured
-                ? "border-gold shadow-[var(--shadow-md)]"
-                : "border-border shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)]"
-            }`}
-          >
-            <span
-              className="badge absolute top-[14px] left-[14px] z-[2] font-semibold"
-              style={
-                p.featured
-                  ? { background: "var(--silva-gold)", color: "#1A1406" }
-                  : { background: "var(--card)", color: "var(--foreground)", borderColor: "var(--border)" }
-              }
-            >
-              {p.badge}
-            </span>
-            <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-              <Image
-                src={p.image.src}
-                alt={p.image.alt}
-                fill
-                sizes="(min-width: 1400px) 680px, (min-width: 720px) 50vw, 100vw"
-                className="zoom-img object-cover"
-                style={{ objectPosition: p.image.position }}
-              />
-            </div>
-            <div className="flex flex-1 flex-col gap-[14px] p-[clamp(20px,2vw,26px)]">
-              <div className="flex flex-col gap-2">
-                <h3 className="m-0 text-[19px] leading-[1.2] font-semibold tracking-[-0.01em]">{p.title}</h3>
-                {p.paragraphs.map((t, i) => (
-                  <p key={i} className="m-0 text-sm leading-[1.6] text-pretty text-muted-foreground">
-                    {t}
-                  </p>
-                ))}
+        <div className="grid gap-6 min-[820px]:grid-cols-2">
+          {packages.map((pkg) => (
+            <article key={pkg.badge} className="group overflow-hidden rounded-[20px] border border-[#e0d7c9] bg-white shadow-[0_18px_45px_-38px_rgba(47,36,18,.55)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_50px_-34px_rgba(47,36,18,.48)]">
+              <div className="relative aspect-[16/9] overflow-hidden bg-[#e8e1d5]">
+                <Image
+                  src={pkg.image.src}
+                  alt={pkg.image.alt}
+                  fill
+                  sizes="(min-width: 820px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                  style={{ objectPosition: pkg.image.position }}
+                />
+                <span className="absolute top-4 left-4 rounded-full bg-white/94 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[.12em] text-[#6d5120] shadow-sm backdrop-blur-sm">{pkg.badge}</span>
               </div>
-              <div className="flex flex-wrap gap-[6px]">
-                {p.chips.map((c) => (
-                  <span key={c} className="badge badge-secondary">
-                    {c}
+              <div className="flex min-h-[310px] flex-col p-[clamp(22px,3vw,34px)]">
+                <h3 className="m-0 font-serif text-[clamp(25px,2.4vw,32px)] leading-[1.08] text-[#1f1c17]">{pkg.title}</h3>
+                <p className="mt-4 mb-0 text-[14px] leading-[1.7] text-[#706a62]">{pkg.paragraphs[0]}</p>
+                <ul className="mt-5 grid list-none gap-2 p-0 min-[480px]:grid-cols-2">
+                  {pkg.chips.slice(0, 4).map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-[12.5px] text-[#4f4a43]">
+                      <Check size={14} strokeWidth={2} className="flex-none text-[#9a722d]" aria-hidden />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto flex flex-col items-start justify-between gap-4 border-t border-[#e9e2d8] pt-5 min-[480px]:flex-row min-[480px]:items-end">
+                  <span className="flex flex-col gap-1">
+                    <span className="text-[10px] font-semibold uppercase tracking-[.14em] text-[#7c756b]">{pkg.priceLabel}</span>
+                    <strong className="text-[25px] leading-none tracking-[-.03em] text-[#241f18] tabular-nums">{pkg.price}</strong>
                   </span>
-                ))}
-                {p.extraChip && <span className="badge badge-outline">{p.extraChip}</span>}
+                  <ChoosePackageButton pkg={pkg.value} className={`sv-btn ${pkg.featured ? "sv-btn--dark" : "sv-btn--outline"}`}>
+                    View Package
+                    <ArrowRight size={16} strokeWidth={1.8} aria-hidden />
+                  </ChoosePackageButton>
+                </div>
               </div>
-              <div className="flex-1" />
-              <div className="separator" />
-              <div className="flex items-end justify-between gap-3">
-                <span className="flex flex-col gap-[2px]">
-                  <span className="meta-label">{p.priceLabel}</span>
-                  <span className="price">{p.price}</span>
-                </span>
-                <ChoosePackageButton pkg={p.value} className={`btn ${p.featured ? "btn-default" : "btn-outline"}`}>
-                  {packagesSection.select}
-                </ChoosePackageButton>
-              </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

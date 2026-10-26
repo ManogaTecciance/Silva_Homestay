@@ -39,7 +39,7 @@ export const footerNav = nav.filter((n) => n.href !== "#facilities");
 
 // Package option values double as the enquiry-form <select> values.
 export const PKG_ROOM = "Room — from Rs. 4,500";
-export const PKG_ROOM_BIKE = "Room + Bike Rental Package — Rs. 6,500";
+export const PKG_ROOM_BIKE = "Room + Bike Rental Package — Rs: 5500.00";
 export const PKG_SACRED_CITY = "Sacred City / Mihintale Bike Package — Rs. 2,000";
 export const packageOptions = [PKG_ROOM, PKG_ROOM_BIKE, PKG_SACRED_CITY] as const;
 
@@ -77,12 +77,13 @@ export const welcome = {
     src: "/images/photos/lounge-wide.jpg",
     alt: "Spacious tiled guest lounge at Silva Homestay with sofas, a dark wooden coffee table, navy curtains and doors to the balcony",
   },
+  highlights: ["Clean, peaceful setting", "Easy access to the Sacred City", "Bike rental available onsite"],
 } as const;
 
 // TODO(client): confirm whether Rs. 4,500 is per night, room count and any room types.
 export const rooms = {
   eyebrow: "Our accommodation",
-  title: "Comfortable A/C rooms.",
+  title: "Rest well after a day of exploring.",
   copy: "Clean, air-conditioned rooms with fresh linen, a kettle and tea tray, and a quiet place to rest after a day at the sacred sites.",
   chips: ["Air-conditioned", "Double bed", "Kettle & tea tray"],
   rateLabel: "Rooms starting from",
@@ -90,9 +91,14 @@ export const rooms = {
   cta: "Book Your Stay",
   images: {
     main: { src: "/images/photos/room-double-bed.jpg", alt: "Air-conditioned guest room with a double bed, blue cushions and fresh towels, a desk with kettle and tea tray, and navy curtains", position: "50% 50%" },
-    ac: { src: "/images/photos/room-ac-entrance.jpg", alt: "Guest room with a wall-mounted A/C unit, navy curtains, a bed with folded towels and a wooden shoe rack", position: "50% 30%" },
+    ac: { src: "/images/photos/tea-station.jpg", alt: "Wooden table with an electric kettle, cups, glasses and a tea tray in a guest room", position: "50% 50%" },
     bath: { src: "/images/photos/bathroom-modern.jpg", alt: "Clean tiled bathroom with rain shower, basin and toilet", position: "50% 55%" },
   },
+  details: [
+    { title: "Comfortable A/C Room", copy: "A calm, private room with a double bed and fresh linen." },
+    { title: "Tea tray in your room", copy: "A kettle and simple tea setup are ready when you arrive." },
+    { title: "Clean bathroom", copy: "A bright, carefully maintained space to refresh." },
+  ],
 } as const;
 
 export const packagesSection = {
@@ -115,7 +121,7 @@ export const packages = [
     chips: ["A/C Room", "Bike Rental", "Convenient Stay & Travel"],
     extraChip: null,
     priceLabel: "Package",
-    price: "Rs. 6,500",
+    price: "Rs: 5500.00",
     value: PKG_ROOM_BIKE,
     image: {
       src: "/images/photos/veranda-scooter.jpg",
@@ -273,6 +279,7 @@ export const gallerySection = {
   title: "Around the homestay.",
   hint: "Tap a photo to view it larger",
   closeHint: "Tap anywhere to close",
+  cta: "View Full Gallery",
 } as const;
 
 export type GalleryItem = { src: string; width: number; height: number; caption: string; alt: string; position?: string; wide?: boolean };
@@ -290,8 +297,8 @@ export const gallery: GalleryItem[] = [
 // TODO(client): confirm guest capacity per room (form currently offers 1, 2 or "3 or more").
 export const enquiry = {
   eyebrow: "Book your stay",
-  title: "Make your Anuradhapura journey more comfortable.",
-  copy: "Stay, explore and experience the city at your own pace with Silva Homestay & Bike Rental.",
+  title: "Plan your stay in Anuradhapura.",
+  copy: "Whether you're visiting for a short stay or exploring the ancient city for a few days, Silva Homestay gives you a comfortable base to begin your journey.",
   callLabel: "Call now",
   emailLabel: "Send an email",
   fields: {
@@ -315,9 +322,10 @@ export const enquiry = {
 } as const;
 
 export const footer = {
+  quickLinksHeading: "Quick links",
   contactHeading: "Contact",
   ratesHeading: "Rates",
-  exploreHeading: "Explore",
-  rates: ["Rooms from Rs. 4,500", "Room + Bike Rental — Rs. 6,500", "Sacred City / Mihintale Bike — Rs. 2,000"],
+  socialHeading: "Follow us",
+  rates: ["Rooms from Rs. 4,500", "Room + Bike Rental — Rs: 5500.00", "Sacred City / Mihintale Bike — Rs. 2,000"],
   copyright: "© 2026 Silva Homestay & Bike Rental",
 } as const;
